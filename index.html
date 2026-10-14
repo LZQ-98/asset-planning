@@ -2,246 +2,127 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>家庭资产结构与调整方案</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d4e3f'/%3E%3Cpath d='M9 11h14M16 11v10M11 21h10' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap">
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人财务规划 · 定投与月度预算（方案2锁定版）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 <style>
-  :root{
-    --bg:#f5f6f8; --card:#ffffff; --ink:#1f2329; --ink2:#565e6b; --ink3:#8a919f;
-    --accent:#1d4e3f; --accent2:#2f9e6f; --warn:#b3402f; --line:#e8eaee;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-  header{padding:44px 0 8px}
-  .eyebrow{font-size:13px;letter-spacing:.14em;color:var(--accent);font-weight:600;margin-bottom:10px}
-  h1{font-size:clamp(26px,4.6vw,40px);font-weight:700;letter-spacing:-.01em;line-height:1.25}
-  .lead{color:var(--ink2);font-size:16px;margin-top:14px;max-width:640px}
-  /* 概览数字 */
-  .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:28px 0 6px}
-  @media(min-width:768px){.kpis{grid-template-columns:repeat(4,1fr)}}
-  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
-  .kpi .lab{font-size:13px;color:var(--ink3)}
-  .kpi .val{font-size:24px;font-weight:700;margin-top:2px}
-  .kpi .sub{font-size:12px;color:var(--ink3);margin-top:2px}
-  .kpi.neg .val{color:var(--warn)}
-  /* 区块 */
-  section{padding:34px 0 8px}
-  .sec-title{font-size:20px;font-weight:700;margin-bottom:4px}
-  .sec-desc{color:var(--ink2);font-size:14px;margin-bottom:20px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
-  .grid2{display:grid;grid-template-columns:1fr;gap:14px}
-  @media(min-width:768px){.grid2{grid-template-columns:1fr 1fr}}
-  .chart{width:100%;height:300px}
-  @media(min-width:768px){.chart{height:340px}}
-  /* 表格 */
-  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:14px}
-  th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line)}
-  th{font-weight:600;color:var(--ink2);font-size:13px}
-  td.num{font-variant-numeric:tabular-nums}
-  tr.bad td{color:var(--warn)}
-  tr.good td{color:var(--accent2)}
-  /* 建议列表 */
-  .todo{display:grid;gap:12px}
-  .todo-item{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
-  .todo-item .n{flex:0 0 28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
-  .todo-item.warn .n{background:var(--warn)}
-  .todo-item h3{font-size:15px;font-weight:700}
-  .todo-item p{font-size:14px;color:var(--ink2);margin-top:4px}
-  footer{padding:36px 0 40px;color:var(--ink3);font-size:13px;text-align:center}
-  .tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:8px;background:#eef6f2;color:var(--accent2);font-weight:600}
-  .note{font-size:12px;color:var(--ink3);margin-top:10px}
+*{box-sizing:border-box;font-family:system-ui,-apple-system,"PingFang SC",sans-serif;margin:0;padding:0}
+body{background:#f4f6f9;padding:24px;color:#1f2937;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto}
+h1{font-size:24px;margin-bottom:6px;color:#111827}
+.sub{color:#6b7280;font-size:14px;margin-bottom:20px}
+.card{background:#fff;border-radius:14px;padding:22px;margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+h2{font-size:18px;color:#111827;border-left:4px solid #2563eb;padding-left:10px;margin-bottom:14px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th,td{border:1px solid #e5e7eb;padding:10px 12px;text-align:left}
+th{background:#eff6ff;font-weight:600}
+tr.hl td{background:#f0fdf4;font-weight:600}
+.num{color:#2563eb;font-weight:700}
+.badge{display:inline-block;background:#2563eb;color:#fff;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:600}
+.badge.green{background:#059669}
+.badge.red{background:#dc2626}
+.badge.amber{background:#d97706}
+.tip{background:#fffbeb;border-radius:10px;padding:14px 16px;margin:12px 0;color:#92400e;font-size:14px;border-left:4px solid #f59e0b}
+.ok{background:#f0fdf4;border-radius:10px;padding:14px 16px;margin:12px 0;color:#14532d;font-size:14px;border-left:4px solid #10b981}
+.warn{background:#fef2f2;border-radius:10px;padding:14px 16px;margin:12px 0;color:#991b1b;font-size:14px;border-left:4px solid #ef4444}
+ul{padding-left:20px;margin:8px 0}
+li{margin:6px 0;font-size:14px}
+.foot{text-align:center;color:#9ca3af;font-size:12px;margin-top:10px}
+#cashChart{width:100%;height:300px}
 </style>
 </head>
 <body>
 <div class="wrap">
+  <h1>个人财务规划 · 定投与月度预算</h1>
+  <div class="sub">消费贷已清 & 公积金全提 · 方案2锁定（维持定投2.0万/月） · 生成于 2026-10-14</div>
 
-  <header>
-    <div class="eyebrow">家庭财务 · 资产与现金流</div>
-    <h1>资产结构与调整方案</h1>
-    <p class="lead">以月到手 5 万元、房贷与低息消费贷并行、另有 44 万可投资金的现状为基线，识别现金流与配置的失衡点，给出可执行的调整顺序。</p>
-  </header>
-
-  <!-- ===== 概览 ===== -->
-  <div class="kpis">
-    <div class="kpi"><div class="lab">月到手</div><div class="val">5.0<span style="font-size:15px">万</span></div><div class="sub">税后</div></div>
-    <div class="kpi"><div class="lab">消费贷余额</div><div class="val neg">42<span style="font-size:15px">万</span></div><div class="sub">年化2%（贴息）· 月还6000</div></div>
-    <div class="kpi"><div class="lab">可投资金</div><div class="val">44<span style="font-size:15px">万</span></div><div class="sub">债基16 + 红利5 + 理财20 + 活期3</div></div>
-    <div class="kpi"><div class="lab">月结余（当前）</div><div class="val neg">≈0</div><div class="sub">生活8000 用掉，投资吃满</div></div>
+  <div class="card">
+    <h2>一、收入结构（年度现金总包 60万）</h2>
+    <table>
+      <tr><th>项目</th><th>金额</th><th>说明</th></tr>
+      <tr><td>月工资（到手）</td><td class="num">1.3 万/月</td><td>×12 = 15.6万</td></tr>
+      <tr><td>公积金（全提）</td><td class="num">1.1 万/月</td><td>×12 = 13.2万，视为可支配现金</td></tr>
+      <tr><td>季度奖</td><td class="num">1.8 万/次</td><td>一年4次 = 7.2万</td></tr>
+      <tr><td>年终奖</td><td class="num">24 万/年</td><td>4月14万 + 12月10万</td></tr>
+      <tr class="hl"><td>年度现金总收入</td><td class="num">60 万</td><td>含公积金全提</td></tr>
+    </table>
+    <div class="ok"><strong>月度现金流入 = 1.3 + 1.1 = 2.4万/月</strong></div>
   </div>
 
-  <!-- ===== 当前资产结构 ===== -->
-  <section id="current">
-    <div class="sec-title">一、当前资产结构</div>
-    <div class="sec-desc">44 万可投资金，收益与波动并存；消费贷 42 万为低成本杠杆。</div>
-    <div class="grid2">
-      <div class="card">
-        <div class="chart" id="pieAsset"></div>
-        <p class="note">44万构成：债基16万(36%)、理财20万(45%)、红利5万(11%)、活期3万(7%)</p>
-      </div>
-      <div class="card">
-        <div class="chart" id="pieLiability"></div>
-        <p class="note">债务结构示意：房贷(月供1.4万) 与 消费贷42万(月还6000,2%) 并存</p>
-      </div>
-    </div>
-  </section>
+  <div class="card">
+    <h2>二、月度支出结构（方案2 · 锁定）</h2>
+    <table>
+      <tr><th>项目</th><th>金额</th><th>性质</th></tr>
+      <tr><td>房贷</td><td class="num">1.4 万/月</td><td>刚性必付</td></tr>
+      <tr><td>个人生活费</td><td class="num">0.8 万/月</td><td>刚性6000 + 弹性2000</td></tr>
+      <tr><td>恋爱开销</td><td class="num">0.2 万/月</td><td>单列，≤2500/月红线</td></tr>
+      <tr class="hl"><td>A500 定投</td><td class="num">2.0 万/月</td><td>雷打不动，不挪用</td></tr>
+      <tr class="hl"><td><strong>月度合计</strong></td><td class="num">4.4 万/月</td><td>—</td></tr>
+    </table>
+    <div class="warn"><strong>铁律：</strong>定投2.0万/月不可挪用；真要压缩，压缩恋爱预算或生活费弹性部分，不从定投抽。</div>
+  </div>
 
-  <!-- ===== 月度现金流 ===== -->
-  <section id="cashflow">
-    <div class="sec-title">二、月度现金流</div>
-    <div class="sec-desc">到手5万，固定流出吃满，月结余为零——这是"现金流紧"的真正来源。</div>
-    <div class="card">
-      <div class="chart" id="barCash"></div>
-      <p class="note">当前口径：房贷1.4 + 定投2.2 + 消费贷0.6 + 生活0.8 = 5.0万，结余 0</p>
-    </div>
-  </section>
+  <div class="card">
+    <h2>三、现金流验证</h2>
+    <table>
+      <tr><th>阶段</th><th>现金流入</th><th>现金流出</th><th>缺口/结余</th></tr>
+      <tr><td>前9个月（月月领2.2万/月）</td><td>2.4 + 2.2 = 4.6万</td><td>4.4万</td><td class="ok" style="background:none">结余 +0.2万/月</td></tr>
+      <tr><td>9个月后（月月领到期）</td><td>2.4万</td><td>4.4万</td><td class="warn" style="background:none">缺口 -2.0万/月</td></tr>
+    </table>
+    <div class="tip">9个月后月月领到期，缺口2.0万/月由【季度奖年7.2万 + 年终奖24万】覆盖，仍有余量。前期结余 + 奖金缓冲，整体安全。</div>
+    <div id="cashChart"></div>
+  </div>
 
-  <!-- ===== 问题诊断 ===== -->
-  <section id="diagnosis">
-    <div class="sec-title">三、问题诊断</div>
-    <div class="sec-desc">四个失衡点，按严重程度排序。</div>
-    <div class="todo">
-      <div class="todo-item warn">
-        <div class="n">1</div>
-        <div><h3>定投比例失控 · 现金流被吃满</h3><p>定投 A500 每月 2.2 万占到手 44%，叠加房贷 28% 与消费贷 12%，固定流出达 84%，月结余归零。投资挤压了生活与还款的安全空间。</p></div>
-      </div>
-      <div class="todo-item warn">
-        <div class="n">2</div>
-        <div><h3>利差薄，风险收益不对称</h3><p>现金 44 万年收益约 1.2 万（综合约 3.1%），消费贷利息 8400（2%），净利差仅约 3750 元/年。为每年多赚三千多块，让 44 万资金承担债基、红利、理财的波动与回撤风险，不划算。</p></div>
-      </div>
-      <div class="todo-item">
-        <div class="n">3</div>
-        <div><h3>20 万理财收益与贷款成本打平</h3><p>理财年化约 2.3%，比消费贷成本（2%）高不了多少。留它赚薄利，不如直接还掉消费贷，减少负债与月供压力。</p></div>
-      </div>
-      <div class="todo-item">
-        <div class="n">4</div>
-        <div><h3>应急依赖消费贷，需留过桥兜底</h3><p>认同"应急靠贷"的省钱思路，但授信可能在失业/大病等极端时被冻结。需留一个 3 万左右的迷你过桥池，应对"当天要现金"与"授信被冻结"两种极端。</p></div>
-      </div>
-    </div>
-  </section>
+  <div class="card">
+    <h2>四、年度收支 & 储蓄率</h2>
+    <table>
+      <tr><th>项目</th><th>金额</th></tr>
+      <tr><td>年度现金收入</td><td class="num">60 万</td></tr>
+      <tr><td>房贷</td><td>16.8 万</td></tr>
+      <tr><td>个人生活费</td><td>9.6 万</td></tr>
+      <tr><td>恋爱开销</td><td>2.4 万</td></tr>
+      <tr><td>A500 定投</td><td class="num">24 万</td></tr>
+      <tr><td>年度总支出</td><td class="num">52.8 万</td></tr>
+      <tr class="hl"><td>年度结余缓冲</td><td class="num">7.2 万</td></tr>
+    </table>
+    <div class="ok"><strong>年度储蓄率 ≈ 65%</strong>（定投24万 + 房贷还本约11万，对60万收入）——高储蓄，完全不低。</div>
+  </div>
 
-  <!-- ===== 调整建议 ===== -->
-  <section id="plan">
-    <div class="sec-title">四、调整建议</div>
-    <div class="sec-desc">按优先级执行，先解放现金流，再优化杠杆与配置。</div>
-    <div class="todo">
-      <div class="todo-item">
-        <div class="n">1</div>
-        <div><h3>定投 A500：2.2 万 → 1.3 万/月 <span class="tag">最优先</span></h3><p>把指数定投占比压到到手 26% 以内，每月释放约 0.9 万现金流，给生活与还款留出弹性。</p></div>
-      </div>
-      <div class="todo-item">
-        <div class="n">2</div>
-        <div><h3>用 20 万理财还消费贷 <span class="tag">解杠杆</span></h3><p>理财收益（2.3%）≈ 贷款成本（2%），留着不值。还掉后消费贷 42 万 → 约 22 万，月供 6000 → 约 3200。</p></div>
-      </div>
-      <div class="todo-item">
-        <div class="n">3</div>
-        <div><h3>只留 3 万过桥池，不压大额应急金</h3><p>按"应急靠贷"思路，用活期 3 万作为过桥兜底（防授信冻结），不单独留 12~15 万低收益应急金。</p></div>
-      </div>
-      <div class="todo-item">
-        <div class="n">4</div>
-        <div><h3>保留债基 16 万 + 红利 5 万</h3><p>债基作稳定层，红利长期吃股息（约 5.5%）。还贷后的释放资金可再加大定投或按偏好配置。</p></div>
-      </div>
-    </div>
-  </section>
+  <div class="card">
+    <h2>五、执行纪律</h2>
+    <ul>
+      <li>月度雷打不动：房贷1.4 + 生活0.8 + 恋爱0.2 + 定投2.0 = <strong>4.4万</strong></li>
+      <li>年终奖两笔（4月14万、12月10万）：不再还债，改为一次性加仓权益/固收，建议 7:3，分2-3批进场，不一次满仓</li>
+      <li>恋爱总开销 ≤ 2500/月；节日/礼物年度单列5000-8000，不摊进月度</li>
+      <li>3万应急金永久保留，不动用；招行月月领是返还本金，非收入，仅作9个月短期缓冲</li>
+      <li>16万债基、5万红利基金长期持有，非极端情况不赎回</li>
+      <li>每年做一次资产再平衡：权益仓位不超过60%</li>
+    </ul>
+  </div>
 
-  <!-- ===== 调整后对比 ===== -->
-  <section id="after">
-    <div class="sec-title">五、调整前后对比</div>
-    <div class="sec-desc">同样的到手 5 万，月结余从 0 回到约 1.2 万；配置从"全铺开"回到"分优先级"。</div>
-    <div class="grid2">
-      <div class="card">
-        <div class="chart" id="barCompare"></div>
-        <p class="note">月结余对比（万元/月）：当前≈0 → 调整后≈1.18</p>
-      </div>
-      <div class="card">
-        <table>
-          <colgroup><col style="width:34%"><col style="width:33%"><col style="width:33%"></colgroup>
-          <thead><tr><th>项</th><th>当前</th><th>调整后</th></tr></thead>
-          <tbody>
-            <tr><td>定投A500</td><td class="num">2.2万/月</td><td class="num good">1.3万/月</td></tr>
-            <tr><td>消费贷</td><td class="num">42万·月供6000</td><td class="num good">22万·月供约3200</td></tr>
-            <tr><td>现金配置</td><td class="num">理财20+债基16+红利5+活期3</td><td class="num good">债基16+红利5+活期3(过桥)</td></tr>
-            <tr><td>月结余</td><td class="num bad">≈0</td><td class="num good">≈1.18万</td></tr>
-          </tbody>
-        </table>
-        <p class="note">安全落点：房贷1.4 + 消费贷0.32 + 生活0.8 ≈ 2.5万/月（还款+生活必须覆盖，其余可投）</p>
-      </div>
-    </div>
-  </section>
+  <div class="card">
+    <h2>六、情景预案</h2>
+    <p style="font-size:14px">✅ <strong>乐观：</strong>奖金足额发放，年度结余7.2万滚入投资，资产加速积累。</p>
+    <p style="font-size:14px">⚠️ <strong>保守：</strong>若收入下滑/奖金打折，第一削减对象是恋爱预算和生活弹性，其次才下调定投（降至1.8万/月，储蓄率仍50%+）。</p>
+  </div>
 
-  <footer>数据口径：月到手5万 · 消费贷42万(2%,月还6000) · 可投资金44万 · 生活8000/月 · 调整建议基于上述参数估算</footer>
-
+  <div class="foot">个人财务规划 · 仅供个人决策参考，不构成投资建议 · 股市有风险，定投需坚持</div>
 </div>
+
 <script>
-  var ACC='#1d4e3f', ACC2='#2f9e6f', WARN='#b3402f', GRY='#c8cdd4', INK2='#565e6b';
-
-  function mk(id){return echarts.init(document.getElementById(id));}
-
-  var pieAsset=mk('pieAsset');
-  pieAsset.setOption({
-    tooltip:{trigger:'item',triggerOn:'click',renderMode:'richText',confine:true},
-    legend:{bottom:0,itemWidth:12,itemHeight:12,textStyle:{fontSize:12}},
-    series:[{type:'pie',radius:['42%','68%'],center:['50%','44%'],
-      data:[
-        {name:'理财 20万(45%)',value:20,itemStyle:{color:ACC}},
-        {name:'债基 16万(36%)',value:16,itemStyle:{color:ACC2}},
-        {name:'红利 5万(11%)',value:5,itemStyle:{color:'#d9a441'}},
-        {name:'活期 3万(7%)',value:3,itemStyle:{color:GRY}}
-      ],
-      label:{fontSize:12,color:INK2},labelLine:{show:false}
-    }]
-  });
-
-  var pieLiability=mk('pieLiability');
-  pieLiability.setOption({
-    tooltip:{trigger:'item',triggerOn:'click',renderMode:'richText',confine:true},
-    legend:{bottom:0,itemWidth:12,itemHeight:12,textStyle:{fontSize:12}},
-    series:[{type:'pie',radius:['42%','68%'],center:['50%','44%'],
-      data:[
-        {name:'消费贷 42万(月6000,2%)',value:42,itemStyle:{color:WARN}},
-        {name:'房贷 月供1.4万(长期)',value:100,itemStyle:{color:ACC}},
-      ],
-      label:{fontSize:12,color:INK2},labelLine:{show:false}
-    }]
-  });
-
-  var barCash=mk('barCash');
-  barCash.setOption({
-    tooltip:{trigger:'axis',axisPointer:{type:'shadow'},triggerOn:'click',renderMode:'richText',confine:true},
-    grid:{left:10,right:16,top:20,bottom:6,containLabel:true},
-    xAxis:{type:'value',name:'万元',nameLocation:'middle',nameGap:24,axisLabel:{fontSize:11}},
-    yAxis:{type:'category',data:['到手','房贷','定投','消费贷','生活','结余'],axisLabel:{fontSize:12}},
-    series:[{type:'bar',barWidth:20,
-      data:[
-        {value:5.0,itemStyle:{color:ACC}},
-        {value:-1.4,itemStyle:{color:WARN}},
-        {value:-2.2,itemStyle:{color:'#d9a441'}},
-        {value:-0.6,itemStyle:{color:WARN}},
-        {value:-0.8,itemStyle:{color:GRY}},
-        {value:0,itemStyle:{color:ACC2}}
-      ],
-      label:{show:true,position:'right',fontSize:12,formatter:function(p){var v=p.value;return v>0?('+'+v+'万'):v===0?('0万'):(v+'万');}}
-    }]
-  });
-
-  var barCompare=mk('barCompare');
-  barCompare.setOption({
-    tooltip:{trigger:'axis',axisPointer:{type:'shadow'},triggerOn:'click',renderMode:'richText',confine:true},
-    grid:{left:10,right:16,top:20,bottom:6,containLabel:true},
-    xAxis:{type:'value',name:'万元/月',nameLocation:'middle',nameGap:24,axisLabel:{fontSize:11}},
-    yAxis:{type:'category',data:['当前月结余','调整后月结余'],axisLabel:{fontSize:12}},
-    series:[{type:'bar',barWidth:26,
-      data:[
-        {value:0,itemStyle:{color:'#c8cdd4'}},
-        {value:1.18,itemStyle:{color:ACC2}}
-      ],
-      label:{show:true,position:'right',fontSize:13,formatter:function(p){return (p.value>0?'+':'')+p.value.toFixed(2)+'万';}}
-    }]
-  });
-
-  window.addEventListener('resize',function(){pieAsset.resize();pieLiability.resize();barCash.resize();barCompare.resize();});
+var chart = echarts.init(document.getElementById('cashChart'));
+chart.setOption({
+  tooltip:{trigger:'axis'},
+  legend:{data:['现金流入','现金流出'],top:0},
+  grid:{left:40,right:20,top:30,bottom:30},
+  xAxis:{type:'category',data:['前9个月\n(月月领期)','9个月后\n(月月领到期)']},
+  yAxis:{type:'value',name:'万元/月'},
+  series:[
+    {name:'现金流入',type:'bar',data:[4.6,2.4],itemStyle:{color:'#2563eb'}},
+    {name:'现金流出',type:'bar',data:[4.4,4.4],itemStyle:{color:'#dc2626'}}
+  ]
+});
+window.addEventListener('resize',function(){chart.resize();});
 </script>
 </body>
 </html>
